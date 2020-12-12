@@ -1,54 +1,45 @@
 import React, { Component } from 'react'
+import { getMovies } from './MovieService';
+import { MovieTable } from './MovieTable';
+import Pagenation  from './common/Pagination';
+import { set } from 'lodash';
+import { paginate } from './utils/paginate';
 
-export class Movie extends Component {
-    state = {
-        movies:[
-            { id: 0, title: "기생충", release: "2019-05-30" },
-            { id: 1, title: "라이온 킹", release: "2019-07-17" },
-            { id: 2, title: "알라딘", release: "2019-05-23" },
-            { id: 3, title: "나랏말싸미", release: "2019-07-24" },
-            { id: 4, title: "주전장", release: "2019-07-25" },
-            { id: 5, title: "어벤져스: 엔드게임", release: "2019-04-24" }
-        ]
+export class Movies extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            movie:[],
+            pageSize:10, //한페이지에 10개
+            count:100, //이거 movie.length로 받아와서 해야하는데 도저히 오늘은 안됨....
+            currentPage:1//현재페이지
+          }
     }
-
-    handleDelete = (movie) =>{
-        const movies = this.state.movies.filter(m => m.id !== movie.id);
-        this.setState({movies});
-    }
-    render() {
-        const {length:count}=this.state.movies;
-        if(count===0)
-        return<p>영화정보가없습니다.</p>
-        
-        return (
-            <React.Fragment>
-            <p>{count} 개의 영화 정보가 있습니다.</p>
     
-            {/* VS Code에서 table.table>thead>tr>th*4를 입력하면 아래와 같이 table 태그를 쉽게 만들 수 있음. (th*4: th 태그를 4개 생성) */}
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>제목</th>
-                  <th>출시일</th>
-                  <th>삭제</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.movies.map(movie =>
-                  <tr key={movie.id}>
-                    <td>{movie.id}</td>
-                    <td>{movie.title}</td>
-                    <td>{movie.release}</td>
-                    <td><button onClick={() => this.handleDelete(movie)}>Delete</button></td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </React.Fragment>
+    componentDidMount(){ //컴포넌트 생성 시 영화를 state에 저장하는 코드
+         //https://ing-yeo.net/2020/10/react-beginner-4/ 3분의1지점 코드 참고
+        this.setState({movie:getMovies()});
+    }
+ 
+    render() {
+       
+        const pagedMovies = paginate(this.state.movie,this.state.currentPage,this.state.pageSize);
+        const handlePageChange = (page) =>{
+            this.setState({currentPage:page});
+        }
+
+        return (
+            <>
+            <MovieTable data={pagedMovies}></MovieTable>
+            <Pagenation
+            itemsCount = {this.state.count}
+            pageSize={this.state.pageSize}
+            currentPage={this.currentPage}
+            onPageChange={handlePageChange}
+            ></Pagenation>
+            </>
         )
     }
 }
 
-export default Movie
+export default Movies

@@ -1,13 +1,13 @@
+//버리기 싫은 코드
 import React from 'react'
 import PropTypes from "prop-types";
-function MovieTable(props) {
-    
+function Table({data}) {
     return (
     <table>
          <thead>
                     <tr>
                         <th>썸네일</th>
-                        <th onClick={()=>props.onSortPage()}>제목<i class="fas fa-sort" /></th>
+                        <th>제목</th>
                         <th>감독</th>
                         <th>배우</th>
                         <th>평점</th>
@@ -15,7 +15,7 @@ function MovieTable(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.data.map(m=>
+                    {data.map(m=>
                     <tr>
                     <td><img src={m.image}/></td>
                     <td>{m.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")}</td>
@@ -37,4 +37,4 @@ MovieTable.propTypes = {
     director: PropTypes.string.isRequired,
     actor: PropTypes.string.isRequired
   };
-export default MovieTable
+export default Table

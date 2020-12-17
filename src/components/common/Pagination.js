@@ -1,13 +1,11 @@
 import React, {Component} from 'react'
 import _ from "lodash";
+
 export class Pagination extends Component {
 
     render() {
         // 각각 아이템(영화목록) 개수, 한 페이지에 보여줄 아이템(영화목록) 개수
-        const itemsCount = this.props.itemsCount;
-        const pageSize = this.props.pageSize;
-        const currentPage = this.props.currentPage;
-        const onPageChange = this.props.onPageChange;
+        const {itemsCount, pageSize, currentPage,onPageChange}=this.props;
         const pageCount = Math.ceil(itemsCount / pageSize); // 몇 페이지가 필요한지 계산
         if (pageCount === 1) 
             return null;

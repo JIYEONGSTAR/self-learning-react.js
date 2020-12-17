@@ -1,18 +1,17 @@
+//버리기싫은 코드
 import React, {Component} from 'react';
 import axios from 'axios';
-import MovieTable from './MovieTable';
+import Table from './Table';
 import { paginate } from './utils/Paginate';
 import { Pagination } from './common/Pagination';
-import _ from 'lodash';
-
-export class Movie extends Component {
+export class Search extends Component {
     state = {
         isLoading: true,
         movies: [],
         value: "",
         pageSize:10,
-        currentPage:1,
-        path: "title", order: "asc" //asc, desc
+        count:100,
+        currentPage:1
     };
 
     getSearchMovie = async () => {
@@ -60,25 +59,9 @@ export class Movie extends Component {
         this.setState({currentPage:page});
     }
 
-    handleSort = () =>{
-        const {movies,path,order}=this.state;
-        const desc = "desc";
-        const asc = "asc";
-        if(order === "asc"?this.setState({order:desc}):this.setState({order:asc}));
-        const sorted = _.orderBy(movies,[path],[order]);
-        this.setState({movies:sorted});
-    }
-    getData = () =>{
-        const{
-            pageSize,currentPage,sortColumn,movies
-        }=this.state;
-        // const sorted = _.orderBy(movies,[sortColumn.path],[sortColumn.order]);
-        const pagedMovies = paginate(movies,currentPage,pageSize);
-        return {count : movies.length,data:pagedMovies}
-    }
     render() {
-        const {isLoading,pageSize,currentPage} = this.state;
-        const {count,data}=this.getData();
+        const {movies, isLoading,currentPage,pageSize,count } = this.state;
+        const pagedMovies = paginate(movies,currentPage,pageSize);
         return (
             <>
                 {
@@ -95,7 +78,7 @@ export class Movie extends Component {
                                     placeholder="영화를 입력해보세요"/>
                                     </div>
                                     <div>
-                                        <MovieTable data={data} onSortPage={this.handleSort}/>
+                                        <Table data={pagedMovies}/>
                                         <Pagination
                                         itemsCount = {count}
                                         pageSize={pageSize}
@@ -112,4 +95,4 @@ export class Movie extends Component {
     }
 }
 
-export default Movie
+export default Search

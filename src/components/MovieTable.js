@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import '../css/MovieTable.css';
+
 function MovieTable(props) {
-    
+    console.log("데이터 기져오기");
     return (
+        
     <table>
          <thead>
                     <tr>
                         <th>썸네일</th>
-                        <th onClick={()=>props.onSortPage()}>제목<i class="fas fa-sort" /></th>
+                        <th onClick={()=>props.onSortPage('title')}>제목<i className="fas fa-sort" /></th>
                         <th>감독</th>
                         <th>배우</th>
                         <th>평점</th>

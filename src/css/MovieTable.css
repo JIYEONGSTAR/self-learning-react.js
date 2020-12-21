@@ -1,0 +1,19 @@
+/* 테이블안에서 사진조정 이런거 너무 귀찮다... */
+
+table{
+    border: 1px solid black;
+    border-collapse:collapse;
+    width:100%;
+}
+th{
+    border:1px solid black;
+    background-color:rgb(212, 196, 255);
+    justify-content: center;
+}
+td{
+    border: 1px solid black;
+    justify-content: center;
+    height:50px;
+    table-layout:fixed;
+    word-break:break-all;
+}

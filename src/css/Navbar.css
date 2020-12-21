@@ -1,0 +1,31 @@
+.navbar{
+    background-color:bisque;
+    height:100px;
+    display:flex;
+    font-size:1.2rem;
+    position:sticky;
+    top:0;
+    z-index:999;
+    justify-content: center;
+}
+.navbar-container{
+    display:flex;
+    justify-self: start;
+    text-align: left;
+    height: 80px;
+    margin-left:20px;
+    font-size: xx-small;
+    float: left;
+}
+.nav-link{
+    color:black;
+    display:flex;
+    align-items: center;
+    padding: 1rem;
+    height:100px;
+    font-size: large;
+    
+}
+.menu-icon{
+    display:none;
+}

@@ -12,9 +12,10 @@ export class Movie extends Component {
         value: "",
         pageSize:10,
         currentPage:1,
-        path: "title", order: "asc" //asc, desc
+        path: "title", 
+        order: "asc" //asc, desc
     };
-
+//검색어로 데이터 가져올 때 <b>"검색어"</b>이렇게되서 제목으로 필터링할때 검색어가 첫 단어일 경우 제일 먼저 나온다. 이건 뭐 어쩔 수 없다. 
     getSearchMovie = async () => {
         console.log('search Movie');
         const ID_KEY = 'lmnnx8RRbuqvKHD3QC_X';
@@ -23,14 +24,14 @@ export class Movie extends Component {
 
         try {
             if (search === "") {
-                this.setState({movies: [], isLoading: false})
+                this.setState({movies: [], isLoading: true})
             } else {
                  const {data: { 
                      items 
                     }} = await axios.get('/v1/search/movie.json',{ 
                         params:{ 
                             query: search, 
-                            display: 100 
+                            display: 100
                         }, 
                         headers: {
                              'X-Naver-Client-Id': ID_KEY,
@@ -47,12 +48,10 @@ export class Movie extends Component {
         this.getSearchMovie();// this.setState({movies: items, isLoading: false}) 이 코드가 있기에 가능함
     }
 
-    handleChange = (e) => {
-        this.setState({value: e.target.value});
-    };
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({value: e.target.value});
         this.getSearchMovie();
     }
    
@@ -60,40 +59,41 @@ export class Movie extends Component {
         this.setState({currentPage:page});
     }
 
-    handleSort = () =>{
-        const {movies,path,order}=this.state;
+    handleSort = (e) =>{
+        const {movies,path,order,currentPage}=this.state;
         const desc = "desc";
         const asc = "asc";
         if(order === "asc"?this.setState({order:desc}):this.setState({order:asc}));
         const sorted = _.orderBy(movies,[path],[order]);
-        this.setState({movies:sorted});
+        this.setState({movies:sorted,currentPage:1});
     }
     getData = () =>{
         const{
-            pageSize,currentPage,sortColumn,movies
+            pageSize,currentPage,movies
         }=this.state;
-        // const sorted = _.orderBy(movies,[sortColumn.path],[sortColumn.order]);
         const pagedMovies = paginate(movies,currentPage,pageSize);
         return {count : movies.length,data:pagedMovies}
     }
     render() {
-        const {isLoading,pageSize,currentPage} = this.state;
+        const {isLoading,pageSize,currentPage,value} = this.state;
         const {count,data}=this.getData();
         return (
             <>
-                {
-                    isLoading
-                        ? (<span>Loading...</span>)
-                        : (
-                            <form onSubmit={this.handleSubmit}>
+            <form 
+            onSubmit={this.handleSubmit}>
                                 <div>
                                 <h1>영화검색</h1>
                                 <input
                                     type="text"
                                     value={this.state.value}
-                                    onChange={this.handleChange}
+                                    // onChange={this.handleChange}
                                     placeholder="영화를 입력해보세요"/>
                                     </div>
+                                    </form>
+                {
+                    isLoading
+                        ? (<span>검색중~~</span>)
+                        : (<div>
                                     <div>
                                         <MovieTable data={data} onSortPage={this.handleSort}/>
                                         <Pagination
@@ -103,7 +103,7 @@ export class Movie extends Component {
                                         onPageChange={this.handlePageChange}
                                         ></Pagination>
                                     </div>
-                            </form>
+                            </div>
                         )
                 }
 

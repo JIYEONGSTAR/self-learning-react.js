@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.bab0b925.chunk.css",
-    "main.js": "/static/js/main.8807b642.chunk.js",
-    "main.js.map": "/static/js/main.8807b642.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.cb20c0aa.js",
-    "runtime-main.js.map": "/static/js/runtime-main.cb20c0aa.js.map",
-    "static/js/2.23db30ff.chunk.js": "/static/js/2.23db30ff.chunk.js",
-    "static/js/2.23db30ff.chunk.js.map": "/static/js/2.23db30ff.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.bab0b925.chunk.css.map": "/static/css/main.bab0b925.chunk.css.map",
-    "static/js/2.23db30ff.chunk.js.LICENSE.txt": "/static/js/2.23db30ff.chunk.js.LICENSE.txt"
+    "main.css": "/self-learning-react.js/static/css/main.d7b1b011.chunk.css",
+    "main.js": "/self-learning-react.js/static/js/main.24cefa8e.chunk.js",
+    "main.js.map": "/self-learning-react.js/static/js/main.24cefa8e.chunk.js.map",
+    "runtime-main.js": "/self-learning-react.js/static/js/runtime-main.871cf2d7.js",
+    "runtime-main.js.map": "/self-learning-react.js/static/js/runtime-main.871cf2d7.js.map",
+    "static/js/2.d2c1954c.chunk.js": "/self-learning-react.js/static/js/2.d2c1954c.chunk.js",
+    "static/js/2.d2c1954c.chunk.js.map": "/self-learning-react.js/static/js/2.d2c1954c.chunk.js.map",
+    "index.html": "/self-learning-react.js/index.html",
+    "static/css/main.d7b1b011.chunk.css.map": "/self-learning-react.js/static/css/main.d7b1b011.chunk.css.map",
+    "static/js/2.d2c1954c.chunk.js.LICENSE.txt": "/self-learning-react.js/static/js/2.d2c1954c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.cb20c0aa.js",
-    "static/js/2.23db30ff.chunk.js",
-    "static/css/main.bab0b925.chunk.css",
-    "static/js/main.8807b642.chunk.js"
+    "static/js/runtime-main.871cf2d7.js",
+    "static/js/2.d2c1954c.chunk.js",
+    "static/css/main.d7b1b011.chunk.css",
+    "static/js/main.24cefa8e.chunk.js"
   ]
 }

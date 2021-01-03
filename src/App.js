@@ -1,4 +1,5 @@
 import Navbar from 'components/Navbar';
+import Footer from './components/Footer'
 import Home from 'pages/Home';
 import UserPage from 'pages/UserPage';
 import MoviePage from 'pages/MoviePage';
@@ -8,7 +9,6 @@ import React from 'react';
 import ChangeInformation from './pages/ChangeInformation';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
-// import Footer from './components/Footer'
 
 function App() {
     return (
@@ -23,7 +23,7 @@ function App() {
                 <Route path='/changeInfo' component={ChangeInformation}/>
                 <Route path='/analyzepage'component={AnalyzePage}/>
             </Switch>
-            {/* <Footer /> */}
+            <Footer />
         </Router>
 
         </>

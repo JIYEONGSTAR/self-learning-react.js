@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import MovieTable from './MovieTable';
-import { paginate } from './utils/Paginate';
-import { Pagination } from './common/Pagination';
+import {Paginate } from './utils/Paginate';
+import { Pagination } from './Pagination';
 import _ from 'lodash';
 import MovieDetail from './MovieDetail';
+import '../css/MovieTable.css';
 
 export class Movie extends Component {
     state = {
@@ -94,7 +95,7 @@ export class Movie extends Component {
         const{
             pageSize,currentPage,movies
         }=this.state;
-        const pagedMovies = paginate(movies,currentPage,pageSize);
+        const pagedMovies = Paginate(movies,currentPage,pageSize);
         return {count : movies.length,data:pagedMovies}
     }
     render() {

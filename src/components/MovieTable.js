@@ -1,13 +1,13 @@
 import React,{useState} from 'react'
 import PropTypes from "prop-types";
-import '../css/MovieTable.css';
+
 
 function MovieTable(props) {
 
     console.log("movieTable 재설정");
     return (
         
-    <table>
+    <table className="movieTable">
          <thead>
                     <tr>
                         <th>썸네일</th>

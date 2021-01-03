@@ -12,7 +12,7 @@ export class Pagination extends Component {
         
         const pages = _.range(1, pageCount + 1); // 마지막 페이지에 보여줄 컨텐츠를 위해 +1, https://lodash.com/docs/#range 참고
         return (
-            <nav>
+            <nav className="pagination">
                 <ul className="pagination">
                     {
                         pages.map(page => (

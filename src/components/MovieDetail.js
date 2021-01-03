@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(2, 2, 1.5),
     },
 }));
 
@@ -29,19 +29,22 @@ const useStyles = makeStyles((theme) => ({
 function MovieDetail(props) {
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
-    const [modify,setModify]=useState(false);
+    // const [modify,setModify]=useState(false);
     const data=props.data;
-    const [title,setTitle]=useState(data.title);
-    const [director,setDirector]=useState(data.director);
-    const newData = data;
-    // const handleChange=(e)=>{
-    //     setDirector(e.target.value);
-    // }
+    const [inputValue,setInputValue] = useState({
+        title:data.title,
+        director:data.director
+    })
+    // const newData = data;
+    const handleChange=(e)=>{
+        const {name,value}=e.target;
+        setInputValue({...inputValue,[name]:value});
+    }
     const handleSubmit=(e)=>{
         console.log(e);
         e.preventDefault();
-        data.director=director;
-        data.title=title;
+        data.director=inputValue.director;
+        data.title=inputValue.title;
         // newData.director=director;
         // console.log("새 데이터 디렉터"+newData.director);
         // console.log(director);
@@ -71,12 +74,14 @@ function MovieDetail(props) {
         <form onSubmit={handleSubmit}>
         <div style={modalStyle} className={classes.paper}>
         <div id="simple-modal-description">
-            <input name="title" value={title
-            .replace(/<b>/gi,"").replace(/<\/b>/gi,"")} onChange={e=>setTitle(e.target.value)} />
-            {/* <input name="director" value={director} onChange={e=>setDirector(e.target.value)} /> */}
-            <p>배우:{newData.actor}</p>
-            <p>평점:{newData.userRating}</p>
-            <p>개봉년도:{newData.pubDate}</p>
+            <span>제목:</span><input name="title" value={inputValue.title
+            .replace(/<b>/gi,"").replace(/<\/b>/gi,"")} onChange={handleChange} /><br />
+            <span>감독:</span><input name="director" value={inputValue.director} onChange={handleChange} />
+            <p>배우:{data.actor}</p>
+            <p>평점:{data.userRating}</p>
+            <p>개봉년도:{data.pubDate}</p>
+            <button type="submit">수정</button>
+            <button onClick={props.close}>닫기</button>
         </div>
         </div>
         </form>
@@ -88,9 +93,7 @@ function MovieDetail(props) {
            onClose={props.close}
            aria-labelledby="simple-modal-title"
            aria-describedby="simple-modal-description">
-               {/* <button>수정</button> */}
                {inputBody}
-               {/* {modify?{inputBody}:{body}} */}
            </Modal>
         </div>
     )

@@ -4,6 +4,7 @@ import MovieTable from './MovieTable';
 import { paginate } from './utils/Paginate';
 import { Pagination } from './common/Pagination';
 import _ from 'lodash';
+import MovieDetail from './MovieDetail';
 
 export class Movie extends Component {
     state = {
@@ -13,7 +14,10 @@ export class Movie extends Component {
         pageSize:10,
         currentPage:1,
         path: "title", 
-        order: "asc" //asc, desc
+        order: "asc", //asc, desc
+        edit:false,
+        movie:[],//선택한 하나만 수정하는거
+        open:false
     };
 //검색어로 데이터 가져올 때 <b>"검색어"</b>이렇게되서 제목으로 필터링할때 검색어가 첫 단어일 경우 제일 먼저 나온다. 이건 뭐 어쩔 수 없다. 
     getSearchMovie = async () => {
@@ -48,10 +52,11 @@ export class Movie extends Component {
         this.getSearchMovie();// this.setState({movies: items, isLoading: false}) 이 코드가 있기에 가능함
     }
 
-
+    handleChange = (e)=>{ //이렇게 해야 화면에 글자가 뜸...
+        this.setState({value: e.target.value});
+    }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({value: e.target.value});
         this.getSearchMovie();
     }
    
@@ -59,13 +64,31 @@ export class Movie extends Component {
         this.setState({currentPage:page});
     }
 
-    handleSort = (e) =>{
+    handleSort = () =>{
         const {movies,path,order,currentPage}=this.state;
         const desc = "desc";
         const asc = "asc";
         if(order === "asc"?this.setState({order:desc}):this.setState({order:asc}));
         const sorted = _.orderBy(movies,[path],[order]);
         this.setState({movies:sorted,currentPage:1});
+    }
+    handleDelete=(e)=>{
+        console.log(e);
+        const movies = this.state.movies.filter(m=>m.link!==e.link);
+        this.setState({movies});
+        console.log(movies);
+    }
+    handleDetail=(e)=>{
+        const movie = this.state.movies.filter(m=>m.link===e.link);
+        this.setState({movie});
+        // console.log("선택한 영화정보")
+        // console.log(this.state.movie[0]);
+        this.setState({edit:true});
+        this.setState({open:true});
+    }
+    handleClose=()=>{
+        this.setState({open:false});
+        this.setState({edit:false});
     }
     getData = () =>{
         const{
@@ -75,7 +98,7 @@ export class Movie extends Component {
         return {count : movies.length,data:pagedMovies}
     }
     render() {
-        const {isLoading,pageSize,currentPage,value} = this.state;
+        const {isLoading,pageSize,currentPage,edit,movie} = this.state;
         const {count,data}=this.getData();
         return (
             <>
@@ -86,7 +109,7 @@ export class Movie extends Component {
                                 <input
                                     type="text"
                                     value={this.state.value}
-                                    // onChange={this.handleChange}
+                                    onChange={this.handleChange}
                                     placeholder="영화를 입력해보세요"/>
                                     </div>
                                     </form>
@@ -95,7 +118,10 @@ export class Movie extends Component {
                         ? (<span>검색중~~</span>)
                         : (<div>
                                     <div>
-                                        <MovieTable data={data} onSortPage={this.handleSort}/>
+                                        <MovieTable data={data} onSortPage={this.handleSort} onDelete={this.handleDelete} 
+                                        onDetail={this.handleDetail}
+                                        /> 
+                                        {edit?<MovieDetail data={movie[0]} open={this.state.open} close={this.handleClose}/>:null}
                                         <Pagination
                                         itemsCount = {count}
                                         pageSize={pageSize}

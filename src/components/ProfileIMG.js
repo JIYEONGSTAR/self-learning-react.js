@@ -19,15 +19,18 @@ function ProfileIMG() {
     return (
         <>
             <div className="profileIMG">
-                <input
+
+                    {
+                   fileURL=== "" ? <img className="prof_img" src={"https://cdn.pixabay.com/photo/2017/02/13/01/26/the-question-mark-2061539_960_720.png"}/> :<img className="prof_img" src={fileURL} />
+                    }
+                     <input
                     type='file'
                     accept='image/jpg,impge/png,image/jpeg,image/gif'
                     name='profile_img'
-                    onChange={handleFileOnChange} id="jiyeong" style={{display:"none"}}/>
-                    <label for="jiyeong"><button>사진업로드</button></label>
-                    {
-                   fileURL=== "" ? null :<img className="prof_img" src={fileURL} />
-                    }
+                    onChange={handleFileOnChange} id="uploadIMG" 
+                    // style={{display:"none"}}
+                    />
+                   {/* <label HTMLfor="uploadIMG"> <i class="fas fa-images" /></label> */}
             </div>
         </>
     )

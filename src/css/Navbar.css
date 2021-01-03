@@ -1,4 +1,4 @@
-.navbar{
+/* .navbar{
     background-color:bisque;
     height:100px;
     display:flex;
@@ -7,25 +7,79 @@
     top:0;
     z-index:999;
     justify-content: center;
-}
-.navbar-container{
+} */
+/* /* */
+.navbar{
+    width: 100%;
+    height: 64px;
+    margin-top:0;
+    position:sticky;
+    background: #EEEEEE;
+    z-index:999;
     display:flex;
-    justify-self: start;
-    text-align: left;
-    height: 80px;
-    margin-left:20px;
-    font-size: xx-small;
-    float: left;
+    justify-content: center;
+    vertical-align: middle;
+
 }
-.nav-link{
+
+.logo{
+    position: absolute;
+    left: 3%;
+    margin: 15px;
     color:black;
-    display:flex;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px; 
+} 
+/* .links{
+    position: absolute;
+    width: 296.68px;
+    height: 26px;
+    left: 523px;
+    top: 21px;
+}
+.link{
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
     align-items: center;
-    padding: 1rem;
-    height:100px;
-    font-size: large;
+
+    color: #000000;
+} */
+.navbar-page{
+    display:none;
+    position: absolute;
+    right: 3%;
+
+}
+
+.nav-link{
+    margin-left:5px;
+    margin-right:5px;
+    color:black;
     
 }
-.menu-icon{
-    display:none;
+.navbar-container{
+    align-items: center;
+    position: absolute;
+    margin:20px 0 15px 0;
+    display:flex;
+}
+.nav-login{
+    position:absolute;
+    right:7%;
+    color:black;
+}
+.analyze-page{
+    right:1%;
+    position: absolute;
+    color:black;
 }

@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/self-learning-react.js/static/css/main.d7b1b011.chunk.css",
-    "main.js": "/self-learning-react.js/static/js/main.24cefa8e.chunk.js",
-    "main.js.map": "/self-learning-react.js/static/js/main.24cefa8e.chunk.js.map",
+    "main.css": "/self-learning-react.js/static/css/main.c789ec46.chunk.css",
+    "main.js": "/self-learning-react.js/static/js/main.bf6d0b40.chunk.js",
+    "main.js.map": "/self-learning-react.js/static/js/main.bf6d0b40.chunk.js.map",
     "runtime-main.js": "/self-learning-react.js/static/js/runtime-main.871cf2d7.js",
     "runtime-main.js.map": "/self-learning-react.js/static/js/runtime-main.871cf2d7.js.map",
-    "static/js/2.d2c1954c.chunk.js": "/self-learning-react.js/static/js/2.d2c1954c.chunk.js",
-    "static/js/2.d2c1954c.chunk.js.map": "/self-learning-react.js/static/js/2.d2c1954c.chunk.js.map",
+    "static/js/2.b44b4d0f.chunk.js": "/self-learning-react.js/static/js/2.b44b4d0f.chunk.js",
+    "static/js/2.b44b4d0f.chunk.js.map": "/self-learning-react.js/static/js/2.b44b4d0f.chunk.js.map",
     "index.html": "/self-learning-react.js/index.html",
-    "static/css/main.d7b1b011.chunk.css.map": "/self-learning-react.js/static/css/main.d7b1b011.chunk.css.map",
-    "static/js/2.d2c1954c.chunk.js.LICENSE.txt": "/self-learning-react.js/static/js/2.d2c1954c.chunk.js.LICENSE.txt"
+    "static/css/main.c789ec46.chunk.css.map": "/self-learning-react.js/static/css/main.c789ec46.chunk.css.map",
+    "static/js/2.b44b4d0f.chunk.js.LICENSE.txt": "/self-learning-react.js/static/js/2.b44b4d0f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.871cf2d7.js",
-    "static/js/2.d2c1954c.chunk.js",
-    "static/css/main.d7b1b011.chunk.css",
-    "static/js/main.24cefa8e.chunk.js"
+    "static/js/2.b44b4d0f.chunk.js",
+    "static/css/main.c789ec46.chunk.css",
+    "static/js/main.bf6d0b40.chunk.js"
   ]
 }

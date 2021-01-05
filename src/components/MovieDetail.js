@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 function MovieDetail(props) {
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
-    // const [modify,setModify]=useState(false);
+    const [modify,setModify]=useState(false);
     const data=props.data;
     const [inputValue,setInputValue] = useState({
         title:data.title,
@@ -45,6 +45,7 @@ function MovieDetail(props) {
         e.preventDefault();
         data.director=inputValue.director;
         data.title=inputValue.title;
+        props.close();
         // newData.director=director;
         // console.log("새 데이터 디렉터"+newData.director);
         // console.log(director);
@@ -81,7 +82,7 @@ function MovieDetail(props) {
             <p>평점:{data.userRating}</p>
             <p>개봉년도:{data.pubDate}</p>
             <button type="submit">수정</button>
-            <button onClick={props.close}>닫기</button>
+            {/* <button onClick={props.close}>닫기</button> */} 
         </div>
         </div>
         </form>
@@ -93,7 +94,14 @@ function MovieDetail(props) {
            onClose={props.close}
            aria-labelledby="simple-modal-title"
            aria-describedby="simple-modal-description">
-               {inputBody}
+               {/* 여기가 오류나 */}
+               <div>
+               <button onClick={setModify(true)}>수정</button>
+               {modify?
+               {inputBody}:{body}
+               }
+               </div>
+               {/* 여기까지 */}
            </Modal>
         </div>
     )

@@ -69,9 +69,12 @@ export class Movie extends Component {
         const {movies,path,order,currentPage}=this.state;
         const desc = "desc";
         const asc = "asc";
-        if(order === "asc"?this.setState({order:desc}):this.setState({order:asc}));
+        if(order === "asc"?
+        this.setState({order:desc}):
+        this.setState({order:asc})
+        );
         const sorted = _.orderBy(movies,[path],[order]);
-        this.setState({movies:sorted,currentPage:1});
+        this.setState({ movies : sorted, currentPage : 1});
     }
     handleDelete=(e)=>{
         console.log(e);
@@ -82,8 +85,6 @@ export class Movie extends Component {
     handleDetail=(e)=>{
         const movie = this.state.movies.filter(m=>m.link===e.link);
         this.setState({movie});
-        // console.log("선택한 영화정보")
-        // console.log(this.state.movie[0]);
         this.setState({edit:true});
         this.setState({open:true});
     }
@@ -92,45 +93,42 @@ export class Movie extends Component {
         this.setState({edit:false});
     }
     getData = () =>{
-        const{
-            pageSize,currentPage,movies
-        }=this.state;
-        const pagedMovies = Paginate(movies,currentPage,pageSize);
-        return {count : movies.length,data:pagedMovies}
+        const{pageSize, currentPage, movies}=this.state;
+        const pagedMovies = Paginate(movies, currentPage, pageSize);
+        return {count : movies.length,data : pagedMovies}
     }
     render() {
-        const {isLoading,pageSize,currentPage,edit,movie} = this.state;
-        const {count,data}=this.getData();
+        const {isLoading, pageSize, currentPage, edit, movie} = this.state;
+        const {count, data}=this.getData();
         return (
             <>
             <form 
-            onSubmit={this.handleSubmit}>
-                                <div>
-                                <h1>영화검색</h1>
-                                <input
-                                    type="text"
-                                    value={this.state.value}
-                                    onChange={this.handleChange}
-                                    placeholder="영화를 입력해보세요"/>
-                                    </div>
-                                    </form>
+                onSubmit={this.handleSubmit}>
+                    <div>
+                    <h1>영화검색</h1>
+                        <input
+                        type="text"
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                        placeholder="영화를 입력해보세요"/>
+                    </div>
+            </form>
                 {
                     isLoading
                         ? (<span>검색중~~</span>)
-                        : (<div>
-                                    <div>
-                                        <MovieTable data={data} onSortPage={this.handleSort} onDelete={this.handleDelete} 
-                                        onDetail={this.handleDetail}
-                                        /> 
-                                        {edit?<MovieDetail data={movie[0]} open={this.state.open} close={this.handleClose}/>:null}
-                                        <Pagination
-                                        itemsCount = {count}
-                                        pageSize={pageSize}
-                                        currentPage={currentPage}
-                                        onPageChange={this.handlePageChange}
-                                        ></Pagination>
-                                    </div>
-                            </div>
+                        : (
+                                <div>
+                                    <MovieTable data={data} onSortPage={this.handleSort} onDelete={this.handleDelete} 
+                                    onDetail={this.handleDetail}
+                                    /> 
+                                    {edit?<MovieDetail data={movie[0]} open={this.state.open} close={this.handleClose}/>:null}
+                                    <Pagination
+                                    itemsCount = {count}
+                                    pageSize={pageSize}
+                                    currentPage={currentPage}
+                                    onPageChange={this.handlePageChange}
+                                    ></Pagination>
+                                </div>
                         )
                 }
 

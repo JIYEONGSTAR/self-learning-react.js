@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function MovieDetail(props) {
+   
     const [modalStyle] = useState(getModalStyle);
     const classes = useStyles();
     const [modify,setModify]=useState(false);
@@ -35,31 +36,31 @@ function MovieDetail(props) {
         title:data.title,
         director:data.director
     })
-    // const newData = data;
+       
+    const handleClose=(e)=>{
+      handleSubmit(e);
+    }
+   
     const handleChange=(e)=>{
         const {name,value}=e.target;
         setInputValue({...inputValue,[name]:value});
     }
+
     const handleSubmit=(e)=>{
         console.log(e);
         e.preventDefault();
         data.director=inputValue.director;
         data.title=inputValue.title;
-        props.close();
-        // newData.director=director;
-        // console.log("새 데이터 디렉터"+newData.director);
-        // console.log(director);
-        // console.log("새 데이터")
-        // console.log(newData);
-        // console.log("기존데이터")
-        // console.log(data);
-        // setData({data:newData});
-        // console.log("새 데이터")
-        // console.log(newData);
-        // console.log("기존 데이터 디렉터"+data.director);
-        // setData({[data.director]:director});
+        props.close();//메소드는 실행이 된다. 여기서 정의한 메소드든 상속받은 메소드든.
+      
     }
    
+//   const onEdit = () => {
+//     setModify((preModify) => {
+//       return !preModify;
+//     });
+//   };
+
     const body=(
         <div style={modalStyle} className={classes.paper}>
         <div id="simple-modal-description">
@@ -68,6 +69,8 @@ function MovieDetail(props) {
             <p>배우:{data.actor}</p>
             <p>평점:{data.userRating}</p>
             <p>개봉년도:{data.pubDate}</p>
+            {/* <button onClick={onEdit}>수정</button> */}
+            <button onClick={()=>setModify((prev)=>!prev)}>수정</button>
         </div>
         </div>
     )
@@ -75,33 +78,30 @@ function MovieDetail(props) {
         <form onSubmit={handleSubmit}>
         <div style={modalStyle} className={classes.paper}>
         <div id="simple-modal-description">
-            <span>제목:</span><input name="title" value={inputValue.title
-            .replace(/<b>/gi,"").replace(/<\/b>/gi,"")} onChange={handleChange} /><br />
-            <span>감독:</span><input name="director" value={inputValue.director} onChange={handleChange} />
+            <span>제목:</span>
+            <input name="title" value={inputValue.title.replace(/<b>/gi,"").replace(/<\/b>/gi,"")} onChange={handleChange} />
+            <br />
+            <span>감독:</span>
+            <input name="director" value={inputValue.director} onChange={handleChange} />
             <p>배우:{data.actor}</p>
             <p>평점:{data.userRating}</p>
             <p>개봉년도:{data.pubDate}</p>
-            <button type="submit">수정</button>
-            {/* <button onClick={props.close}>닫기</button> */} 
+            <button type="submit">저장</button>
         </div>
         </div>
         </form>
     )
     return (
+         
         <div>
            <Modal
            open={props.open ? true : false}
-           onClose={props.close}
+           onClose={handleClose}
            aria-labelledby="simple-modal-title"
            aria-describedby="simple-modal-description">
-               {/* 여기가 오류나 */}
                <div>
-               <button onClick={setModify(true)}>수정</button>
-               {modify?
-               {inputBody}:{body}
-               }
-               </div>
-               {/* 여기까지 */}
+               { modify ? inputBody : body }
+               </div> 
            </Modal>
         </div>
     )

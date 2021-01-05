@@ -7,7 +7,7 @@ function Navbar() {
     return (
         <>
         <nav className="navbar">
-            <Link to ="/"><h1 className="logo">wordata</h1></Link>
+            <Link to ="/"><h1 className="logo">무비리스트</h1></Link>
             <div className="navbar-container">
                 <Link to="/" className="nav-link" onClick={()=>setThisPage('Home')}>Home</Link>
                 <Link to="/userpage" className="nav-link" onClick={()=>setThisPage('UserPage')}>UserPage</Link>

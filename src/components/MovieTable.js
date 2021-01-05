@@ -29,7 +29,7 @@ function MovieTable(props) {
                     <td>{m.userRating}</td>
                     <td>{m.pubDate}</td>    
                     <td><button onClick={()=>props.onDelete(m)}>삭제</button>
-                    <button onClick={()=>props.onDetail(m)}>수정</button>
+                    <button onClick={()=>props.onDetail(m)}>세부사항</button>
                     </td>
                     </tr>
                     )}
